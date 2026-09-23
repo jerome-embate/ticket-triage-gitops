@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticket-triage-depl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ticket-triage-depl
+  template:
+    metadata:
+      labels:
+        app: ticket-triage-depl
+    spec:
+      containers:
+        - name: ticket-triage-depl
+          image: 777170294849.dkr.ecr.us-east-1.amazonaws.com/ticket-triage-agent:v0.1.2
+          ports:
+          - containerPort: 8000
+          env:
+          - name: ANTHROPIC_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: ticket-triage-secrets
+                key: anthropic-api-key

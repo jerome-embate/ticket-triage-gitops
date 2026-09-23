@@ -1,0 +1,3 @@
+# Plaintext secrets must never be committed; values live in AWS Secrets Manager
+clusters/eks/k8s/secrets.yml
+*.agekey
